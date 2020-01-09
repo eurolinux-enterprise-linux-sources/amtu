@@ -1,7 +1,7 @@
 Summary: Abstract Machine Test Utility (AMTU)
 Name: amtu 
 Version: 1.0.8
-Release: 8%{?dist}
+Release: 11%{?dist}
 License: CPL
 Group: System Environment/Base
 URL: http://sourceforge.net/projects/amtueal/
@@ -9,6 +9,8 @@ Source0: %{name}-%{version}.tar.gz
 Patch1: amtu-1.0.8-doc.patch
 Patch2: amtu-1.0.8-init.patch
 Patch3: amtu-1.0.8-memsep.patch
+Patch4: amtu-1.0.8-net-device.patch
+Patch5: amtu-1.0.8-net-device_name.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: audit-libs-devel >= 1.1.2
 BuildRequires: automake
@@ -27,6 +29,8 @@ http://www.radium.ncsc.mil/tpep/library/protection_profiles/CAPP-1.d.pdf
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 touch ChangeLog
@@ -61,6 +65,18 @@ fi
 %attr(0644,root,root) %{_mandir}/man8/*
 
 %changelog
+* Fri May 30 2014 Paul Moore <pmoore@redhat.com> - 1.0.8-11
+- Added amtu-1.0.8-net-device_name.patch
+  Resolves #1098076
+
+* Thu Mar 13 2014 Paul Moore <pmoore@redhat.com> - 1.0.8-10
+- Rebuild for RHEL-6.6-fastrack
+  Resolves #689823 #723049
+
+* Tue Dec 10 2013 Paul Moore <pmoore@redhat.com> - 1.0.8-9
+- Added amtu-1.0.8-net-device.patch
+  Resolves #689823 #723049
+
 * Tue Feb 16 2010 Steve Grubb <sgrubb@redhat.com> - 1.0.8-8
 - Move amtu to /usr/sbin
 
